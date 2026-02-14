@@ -1,0 +1,15 @@
+from math import inf
+
+
+class Solution:
+    pre=-inf
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+        if not self.isValidBST(root.left):
+            return False
+        if self.pre>=root.val:
+            return False
+        self.pre=root.val
+        return self.isValidBST(root.right)
+        
