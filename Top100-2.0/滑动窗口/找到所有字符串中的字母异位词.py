@@ -1,0 +1,17 @@
+from collections import Counter
+
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        cnt=Counter(p)
+        n=len(p)
+        left=0
+        res=[]
+        for right,c in enumerate(s):
+            cnt[c]-=1
+            while cnt[c]<0:
+                cnt[s[left]]+=1
+                left+=1
+            if right-left+1==n:
+                res.append(left)
+        return res
